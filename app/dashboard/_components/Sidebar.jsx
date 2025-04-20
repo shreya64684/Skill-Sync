@@ -4,6 +4,7 @@ import {
   Home,
   Calendar,
   FileText,
+  Podcast,
   Briefcase,
   Settings,
   MessageSquare,
@@ -15,19 +16,18 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // ✅ Import
+import { SignOutButton } from "@clerk/nextjs";
+
 
 const Sidebar = ({ isCollapsed = false, onToggle }) => {
   const pathname = usePathname(); // ✅ Get current path
 
   const navItems = [
     { name: 'Dashboard', icon: <Home />, path: '/dashboard' },
-    { name: 'Mock Interviews', icon: <Calendar />, path: '/dashboard/mockInterview' },
-    { name: 'Resume', icon: <FileText />, path: '/dashboard/resume' },
-    { name: 'Job Matcher', icon: <Layers />, path: '/dashboard/JDmatcher' },
-    { name: 'Job Opportunities', icon: <Briefcase />, path: '/dashboard/jobListing' },
-    { name: 'Messages', icon: <MessageSquare />, path: '/messages' },
-    { name: 'Profile', icon: <User />, path: '/profile' },
-    { name: 'Settings', icon: <Settings />, path: '/settings' },
+    { name: 'AI Mock Interviews', icon: <Calendar />, path: '/dashboard/mockInterview' },
+    { name: 'AI Voice Interview', icon: <Podcast />, path: '/dashboard/voiceInterview' },
+    { name: 'Resume Analyzer', icon: <FileText />, path: '/dashboard/resume' },
+    
   ];
 
   return (
@@ -90,12 +90,18 @@ const Sidebar = ({ isCollapsed = false, onToggle }) => {
 
       {/* Footer */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
-        <button className={`flex items-center text-slate-600 hover:text-red-600 transition-colors ${
-          isCollapsed ? 'justify-center' : ''
-        }`}>
-          <LogOut size={18} className={isCollapsed ? 'mx-auto' : 'mr-2'} />
-          {!isCollapsed && <span>Logout</span>}
-        </button>
+        <div className="mt-auto">
+          <SignOutButton>
+              <button
+                className={`flex items-center w-full px-4 py-2 text-slate-600 hover:text-red-600 transition-colors rounded-md ${
+                  isCollapsed ? 'justify-center' : ''
+                }`}
+              >
+                <LogOut size={18} className={isCollapsed ? 'mx-auto' : 'mr-2'} />
+                {!isCollapsed && <span>Logout</span>}
+              </button>
+          </SignOutButton>
+        </div>
       </div>
     </aside>
   );

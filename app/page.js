@@ -99,7 +99,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, Check, Star, FileText, Briefcase, Linkedin, Sparkles, Users, Award, Zap } from 'lucide-react'
+import { ArrowRight, Check, Star, FileText, Briefcase, Linkedin, Sparkles, Users, Award, Zap , Podcast} from 'lucide-react'
 
 export default function LandingPage() {
   const router = useRouter()
@@ -116,15 +116,15 @@ export default function LandingPage() {
       desc: "Get actionable insights to optimize your resume for better job opportunities."
     },
     {
-      icon: <Briefcase className="w-6 h-6 text-green-500" />,
-      title: "Resume-Job Matcher",
-      desc: "See how well your resume aligns with job descriptions and improve your match score."
+      icon: <Podcast className="w-6 h-6 text-green-500" />,
+      title: "Ai-Powered Voice Interview Agent",
+      desc: "Practice with realtime AI voice recruiter agent and improve your communication."
     },
-    {
-      icon: <Linkedin className="w-6 h-6 text-sky-600" />,
-      title: "Smart Job Recommendations",
-      desc: "Get personalized job/internship opportunities scraped from LinkedIn based on your profile."
-    }
+    // {
+    //   icon: <Linkedin className="w-6 h-6 text-sky-600" />,
+    //   title: "Smart Job Recommendations",
+    //   desc: "Get personalized job/internship opportunities scraped from LinkedIn based on your profile."
+    // }
   ]
 
   const testimonials = [
@@ -244,7 +244,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 w-full"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 w-full"
         >
           {features.map((feature, index) => (
             <motion.div

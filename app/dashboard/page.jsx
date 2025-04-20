@@ -298,9 +298,13 @@ import {
   Layers, 
   Briefcase,
   ArrowRight,
+  Podcast,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import WelcomeUser from './_components/WelcomeUser';
 
 const Dashboard = () => {
+  const router = useRouter();
   const [activeFeature, setActiveFeature] = useState(null);
   
   // Animation on mount
@@ -319,7 +323,17 @@ const Dashboard = () => {
       description: 'Practice with our AI-powered interview simulator and receive feedback on your performance.',
       icon: <Calendar className="w-8 h-8 text-blue-500" />,
       buttonText: 'Start Practice',
-      metric: '12 Sessions'
+      metric: '12 Sessions',
+      link: '/dashboard/mockInterview',
+    },
+    {
+      id: 'vinterview',
+      title: 'AI Voice Interview',
+      description: 'Practice with our AI-powered voice interview agent in real time and receive feedback on your answers.',
+      icon: <Podcast className="w-8 h-8 text-blue-500" />,
+      buttonText: 'Start Practice',
+      metric: '2 Sessions',
+      link: '/dashboard/voiceInterview',
     },
     {
       id: 'resume',
@@ -327,38 +341,24 @@ const Dashboard = () => {
       description: 'Get professional feedback on your resume with actionable improvements.',
       icon: <FileText className="w-8 h-8 text-teal-500" />,
       buttonText: 'Analyze Resume',
-      metric: '4 Analyses'
+      metric: '4 Analyses',
+      link: '/dashboard/resume'
     },
-    {
-      id: 'matcher',
-      title: 'Resume-Job Matcher',
-      description: 'Match your resume with job descriptions to identify compatibility and areas to improve.',
-      icon: <Layers className="w-8 h-8 text-purple-500" />,
-      buttonText: 'Match Now',
-      metric: '82% Match Rate'
-    },
-    {
-      id: 'opportunities',
-      title: 'Job Opportunities',
-      description: 'Discover personalized job and internship opportunities based on your resume.',
-      icon: <Briefcase className="w-8 h-8 text-orange-500" />,
-      buttonText: 'Find Jobs',
-      metric: '28 New Listings'
-    }
+    
   ];
 
   // Recent activity data
   const recentActivity = [
-    { id: 1, title: 'Mock Interview: Software Engineer', time: '2 hours ago', status: 'Completed', score: '86%' },
+    { id: 1, title: 'Mock Interview: Frontend Developer', time: '2 hours ago', status: 'Completed', score: '86%' },
     { id: 2, title: 'Resume Analysis', time: 'Yesterday', status: 'Completed', score: '92%' },
-    { id: 3, title: 'Job Application: Frontend Developer', time: '3 days ago', status: 'Applied', score: '94% Match' }
   ];
 
   return (
     <>
       {/* Welcome section */}
       <div className="mb-8 pt-4">
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Welcome back, John!</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Welcome back, User!</h1>
+        {/* <WelcomeUser/> */}
         <p className="text-slate-500">Let's continue enhancing your career prospects</p>
       </div>
 
@@ -377,7 +377,7 @@ const Dashboard = () => {
               <h3 className="text-lg font-semibold text-slate-800 mb-2">{feature.title}</h3>
               <p className="text-slate-600 text-sm mb-4">{feature.description}</p>
               <div className="flex items-center justify-between">
-                <button className="text-sm font-medium text-blue-600 hover:text-blue-700 px-4 py-1.5 rounded-md border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors">
+                <button onClick={() => router.push(feature.link)} className="text-sm font-medium text-blue-600 hover:text-blue-700 px-4 py-1.5 rounded-md border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors">
                   {feature.buttonText}
                 </button>
                 <span className="text-xs font-medium text-slate-500">{feature.metric}</span>
